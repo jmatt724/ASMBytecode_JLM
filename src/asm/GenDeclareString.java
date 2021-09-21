@@ -14,17 +14,27 @@ public class GenDeclareString {
         cw.visit(Opcodes.V11, Opcodes.ACC_PUBLIC,"DeclareStrings", null, "java/lang/Object", null);
 		
         {
-        	MethodVisitor mv=cw.visitMethod(Opcodes.ACC_PUBLIC, "<init>", "()v", null, null);
+        	MethodVisitor mv=cw.visitMethod(Opcodes.ACC_PUBLIC, "<init>", "()V", null, null);
             mv.visitCode();
             mv.visitVarInsn(Opcodes.ALOAD, 0); // load the first local variable: this
-            mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Object", "<init>", "()v",false);
+            mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/Object", "<init>", "()V" ,false);
             mv.visitInsn(Opcodes.RETURN);
+            mv.visitMaxs(0,0);
             mv.visitEnd();
         }//end constructor generation
         
         {
         	MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
         	mv.visitCode();
+        	mv.visitLdcInsn("Hello World");
+        	mv.visitVarInsn(Opcodes.ASTORE, 1);
+        	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+            mv.visitVarInsn(Opcodes.ALOAD, 1);
+            mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
+        	
+        	mv.visitInsn(Opcodes.RETURN);
+            mv.visitMaxs(0,0);
+            mv.visitEnd();
         	
         	// TODO: main body
         	

@@ -38,6 +38,30 @@ public class GenSub {
             mv.visitVarInsn(Opcodes.DLOAD, 5);
             mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(D)V", false);
             
+            mv.visitLdcInsn((Integer)10);
+            mv.visitVarInsn(Opcodes.ISTORE,1);
+            mv.visitLdcInsn((Integer)5);
+            mv.visitVarInsn(Opcodes.ISTORE,2);
+            mv.visitVarInsn(Opcodes.ILOAD,1);
+            mv.visitVarInsn(Opcodes.ILOAD,2);
+            mv.visitInsn(Opcodes.ISUB);
+            mv.visitVarInsn(Opcodes.ISTORE,3);
+            mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+            mv.visitVarInsn(Opcodes.ILOAD, 3);
+            mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(I)V", false);
+            
+            mv.visitLdcInsn((long)2.0);
+            mv.visitVarInsn(Opcodes.LSTORE,1);
+            mv.visitLdcInsn((long)1.0);
+            mv.visitVarInsn(Opcodes.LSTORE,3);
+            mv.visitVarInsn(Opcodes.LLOAD,1);
+            mv.visitVarInsn(Opcodes.LLOAD,3);
+            mv.visitInsn(Opcodes.LSUB);
+            mv.visitVarInsn(Opcodes.LSTORE,5);
+            mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+            mv.visitVarInsn(Opcodes.LLOAD, 5);
+            mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(J)V", false);
+            
             mv.visitInsn(Opcodes.RETURN);
             mv.visitMaxs(0,0);
             mv.visitEnd();
