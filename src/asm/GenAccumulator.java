@@ -26,7 +26,7 @@ public class GenAccumulator {
         {
         	MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
         	mv.visitCode();
-        	
+        	//New scanner to get starting number
         	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
         	mv.visitLdcInsn("Enter your number: ");
         	mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "print", "(Ljava/lang/String;)V", false);
@@ -36,6 +36,7 @@ public class GenAccumulator {
         	mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/util/Scanner", "<init>", "(Ljava/io/InputStream;)V", false);
         	mv.visitVarInsn(Opcodes.ASTORE, 1);
         	mv.visitVarInsn(Opcodes.ALOAD, 1);
+        	//Gets second input as first number to add
         	mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/util/Scanner", "nextInt", "()I", false);
         	mv.visitVarInsn(Opcodes.ISTORE, 2);
         	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
@@ -45,9 +46,11 @@ public class GenAccumulator {
         	mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/util/Scanner", "nextInt", "()I", false);
         	mv.visitVarInsn(Opcodes.ISTORE, 3);
         	Label l0 = new Label();
+        	//start of loop
         	mv.visitLabel(l0);
         	mv.visitVarInsn(Opcodes.ILOAD, 3);
         	Label l1 = new Label();
+        	//compares number to add to 0, if zero quit and print sum;
         	mv.visitJumpInsn(Opcodes.IFEQ, l1);
         	mv.visitVarInsn(Opcodes.ILOAD, 2);
         	mv.visitVarInsn(Opcodes.ILOAD, 3);

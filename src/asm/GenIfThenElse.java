@@ -26,7 +26,7 @@ public class GenIfThenElse {
         {
         	MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
         	mv.visitCode();
-        	
+        	//declares two Integers and two strings to print
         	mv.visitLdcInsn((Integer)5);
         	mv.visitVarInsn(Opcodes.ISTORE, 1);
         	mv.visitLdcInsn((Integer)0);
@@ -40,7 +40,7 @@ public class GenIfThenElse {
         	
         	Label iftrue = new Label();
         	Label end = new Label();
-        	
+        	//passes if numbers are not equal
         	mv.visitJumpInsn(Opcodes.IF_ICMPNE, iftrue);
         	
         	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");

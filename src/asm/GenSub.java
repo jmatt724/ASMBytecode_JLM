@@ -26,18 +26,20 @@ public class GenSub {
         {
             MethodVisitor mv=cw.visitMethod(Opcodes.ACC_PUBLIC+Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
             mv.visitCode();
+            //defines doubles
             mv.visitLdcInsn((Double)173.43);
             mv.visitVarInsn(Opcodes.DSTORE,1);
             mv.visitLdcInsn((Double)45.56);
             mv.visitVarInsn(Opcodes.DSTORE,3);
             mv.visitVarInsn(Opcodes.DLOAD,1);
             mv.visitVarInsn(Opcodes.DLOAD,3);
+            //pops doubles and subtracts them, then stores to 5
             mv.visitInsn(Opcodes.DSUB);
             mv.visitVarInsn(Opcodes.DSTORE,5);
             mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
             mv.visitVarInsn(Opcodes.DLOAD, 5);
             mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(D)V", false);
-            
+            //same process for ints
             mv.visitLdcInsn((Integer)10);
             mv.visitVarInsn(Opcodes.ISTORE,1);
             mv.visitLdcInsn((Integer)5);
@@ -49,7 +51,7 @@ public class GenSub {
             mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
             mv.visitVarInsn(Opcodes.ILOAD, 3);
             mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(I)V", false);
-            
+            //same process for longs. Note longs use J to print
             mv.visitLdcInsn((long)2.0);
             mv.visitVarInsn(Opcodes.LSTORE,1);
             mv.visitLdcInsn((long)1.0);

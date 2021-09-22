@@ -26,18 +26,20 @@ public class GenInput {
         {
         	MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
         	mv.visitCode();
-        	
+        	//generating the scanner
         	mv.visitTypeInsn(Opcodes.NEW, "java/util/Scanner");
         	mv.visitInsn(Opcodes.DUP);
         	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "in",  "Ljava/io/InputStream;");
         	mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/util/Scanner" , "<init>", "(Ljava/io/InputStream;)V", false);
         	mv.visitVarInsn(Opcodes.ASTORE, 1);
+        	//stores the input to 1
         	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
         	mv.visitLdcInsn("Input: ");
         	mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);
         	mv.visitVarInsn(Opcodes.ALOAD, 1);
             mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/util/Scanner", "nextLine", "()Ljava/lang/String;", false);
         	mv.visitVarInsn(Opcodes.ASTORE, 2);
+        	//prints the output back out for checking
         	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
         	mv.visitLdcInsn("Did you say?: ");
         	mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V", false);

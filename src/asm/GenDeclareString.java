@@ -26,7 +26,9 @@ public class GenDeclareString {
         {
         	MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
         	mv.visitCode();
+        	//pushes string reference to stack
         	mv.visitLdcInsn("Hello World");
+        	//stores to 1
         	mv.visitVarInsn(Opcodes.ASTORE, 1);
         	mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
             mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -35,9 +37,7 @@ public class GenDeclareString {
         	mv.visitInsn(Opcodes.RETURN);
             mv.visitMaxs(0,0);
             mv.visitEnd();
-        	
-        	// TODO: main body
-        	
+        	        	
         	mv.visitEnd();
         }//end main generation
         

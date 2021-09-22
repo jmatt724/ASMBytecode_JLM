@@ -26,14 +26,14 @@ public class GenWhile {
         {
         	MethodVisitor mv = cw.visitMethod(Opcodes.ACC_PUBLIC + Opcodes.ACC_STATIC, "main", "([Ljava/lang/String;)V", null, null);
         	mv.visitCode();
-        	
+        	//declare integers and stores them
         	mv.visitLdcInsn((Integer)1);
         	mv.visitVarInsn(Opcodes.ISTORE, 1);
         	mv.visitLdcInsn((Integer)10);
         	mv.visitVarInsn(Opcodes.ISTORE, 2);
         	
         	Label l1 = new Label();
-        	
+        	//start loop
         	mv.visitLabel(l1);
         	mv.visitVarInsn(Opcodes.ILOAD, 1);
         	mv.visitVarInsn(Opcodes.ILOAD, 2);
@@ -41,6 +41,7 @@ public class GenWhile {
         	Label l2 = new Label();
         	
         	mv.visitJumpInsn(Opcodes.IF_ICMPEQ, l2);
+        	//increments the integer then stores it
         	mv.visitIincInsn(1,1);
         	mv.visitJumpInsn(Opcodes.GOTO, l1);
         	

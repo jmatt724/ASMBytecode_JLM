@@ -1,9 +1,10 @@
 package asm;
 
 public class Tests {
+	//place to put java code to decompile or asmifiy
 	public static void main(String args[]) {
-		Double i = 55.5;
-		Double j = 55.6;
+		long i = 56;
+		long j = 55;
 		
 		if(i > j) {
 			System.out.println("Second is larger");
